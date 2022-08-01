@@ -919,19 +919,17 @@ class GemActivity : AppCompatActivity() {
         updateClientCertIcon()
 
         if(address.startsWith("http://") or address.startsWith("https://")){
-            val httpProxy = prefs.getString("http_proxy", null)
+            val httpProxy = prefs.getString("http_proxy", null) ?: ""
 
-            if (httpProxy != null) {
-                if(
-                    httpProxy.isNullOrEmpty()
-                    or !httpProxy.startsWith("gemini://")
-                    or httpProxy.contains(" ")
-                    or !httpProxy.contains(".")
-                ){
-                    openExternalLink(address)
-                }else{
-                    model.request(httpProxy, certPassword, address)
-                }
+            if(
+                httpProxy.isNullOrEmpty()
+                or !httpProxy.startsWith("gemini://")
+                or httpProxy.contains(" ")
+                or !httpProxy.contains(".")
+            ){
+                openExternalLink(address)
+            }else{
+                model.request(httpProxy, certPassword, address)
             }
         }
 
