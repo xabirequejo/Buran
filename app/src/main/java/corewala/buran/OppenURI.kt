@@ -64,34 +64,6 @@ class OppenURI constructor(private var ouri: String) {
         return ouri
     }
 
-    fun traverse(): OppenURI{
-        val path = ouri.removePrefix("$GEMSCHEME$host")
-        val segments  = path.split(SOLIDUS).filter { it.isNotEmpty() }
-
-        var nouri = "$GEMSCHEME$host"
-
-        when (ouri) {
-            "" -> {
-            }
-            GEMSCHEME -> ouri = ""
-            "$nouri/" -> ouri = GEMSCHEME
-            else -> {
-                when {
-                    segments.isNotEmpty() -> {
-                        val remaining = segments.dropLast(1)
-                        remaining.forEach { segment ->
-                            nouri += "/$segment"
-                        }
-                        ouri = "$nouri/"
-                    }
-                    else -> ouri = "$nouri/"
-                }
-            }
-        }
-
-        return this
-    }
-
     private fun traverse(count: Int): String{
         val path = ouri.removePrefix("$GEMSCHEME$host")
         val segments  = path.split(SOLIDUS).filter { it.isNotEmpty() }
