@@ -6,6 +6,7 @@ const val GEMSCHEME = "gemini://"
 const val TRAVERSE = "../"
 const val SOLIDUS = "/"
 const val DIREND = "/"
+const val QUERY = "?"
 
 /**
  *
@@ -44,9 +45,18 @@ class OppenURI constructor(private var ouri: String) {
                 val traversalCount = reference.split(TRAVERSE).size - 1
                 ouri = traverse(traversalCount) + reference.replace(TRAVERSE, "")
             }
+            reference.startsWith(QUERY) -> {
+                ouri = if(reference.contains(QUERY)){
+                    ouri.substringBefore(QUERY) + reference
+                }else{
+                    ouri + reference
+                }
+            }
             else -> {
                 ouri = when {
-                    ouri.endsWith(DIREND) -> "${ouri}$reference"
+                    ouri.endsWith(DIREND) -> {
+                        "${ouri}$reference"
+                    }
                     else -> "${ouri.substring(0, ouri.lastIndexOf("/"))}/$reference"
                 }
             }
