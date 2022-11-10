@@ -11,8 +11,8 @@ android {
         applicationId "corewala.gemini.buran"
         minSdkVersion 21
         targetSdkVersion 30
-        versionCode 12
-        versionName "v1.11"
+        versionCode 13
+        versionName "v1.12"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 

@@ -1,0 +1,9 @@
+Changelog:
+
+ - Fixed broken unproxied HTTP links
+
+ - Un-bugged the back button
+
+ - This is a really tiny release
+
+ - Actual features coming at some point in the nebulous future
