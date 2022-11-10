@@ -172,6 +172,7 @@ class GeminiDatasource(private val context: Context, val history: BuranHistory):
         bufferedWriter.close()
         outWriter.close()
 
+        currentRequestAddress = null
         socket.close()
     }
 
