@@ -133,7 +133,7 @@ class GeminiDatasource(private val context: Context, val history: BuranHistory):
         val bufferedReader = BufferedReader(headerInputReader)
         val headerLine = bufferedReader.readLine()
 
-        println("Buran: response header: $headerLine")
+        println("Buran response header: $headerLine")
 
         if(headerLine == null){
             if(currentRequestAddress == uri.toString()){
@@ -144,23 +144,27 @@ class GeminiDatasource(private val context: Context, val history: BuranHistory):
 
         val header = GeminiResponse.parseHeader(headerLine)
 
-        when {
-            currentRequestAddress != uri.toString() -> {}
-            header.code == GeminiResponse.INPUT -> onUpdate(GemState.ResponseInput(uri, header))
-            header.code == GeminiResponse.REDIRECT ->  onUpdate(GemState.Redirect(header.meta))
-            header.code == GeminiResponse.CLIENT_CERTIFICATE_REQUIRED -> onUpdate(GemState.ClientCertRequired(uri, header))
-            header.code != GeminiResponse.SUCCESS -> onUpdate(GemState.ResponseError(header))
-            header.meta.startsWith("text/gemini") -> getGemtext(bufferedReader, requestEntity.trim().toURI(), header, onUpdate)
-            header.meta.startsWith("text/") -> getString(socket, uri, header, onUpdate)
-            header.meta.startsWith("image/") -> getBinary(socket, uri, header, onUpdate)
-            else -> {
-                //File served over Gemini but not handled in-app, eg .pdf
-                if(forceDownload){
-                    getBinary(socket, uri, header, onUpdate)
-                }else{
-                    onUpdate(GemState.ResponseUnknownMime(uri, header))
+        if(currentRequestAddress == uri.toString()){
+            currentRequestAddress = null
+            when {
+                header.code == GeminiResponse.INPUT -> onUpdate(GemState.ResponseInput(uri, header))
+                header.code == GeminiResponse.REDIRECT ->  onUpdate(GemState.Redirect(header.meta))
+                header.code == GeminiResponse.CLIENT_CERTIFICATE_REQUIRED -> onUpdate(GemState.ClientCertRequired(uri, header))
+                header.code != GeminiResponse.SUCCESS -> onUpdate(GemState.ResponseError(header))
+                header.meta.startsWith("text/gemini") -> getGemtext(bufferedReader, requestEntity.trim().toURI(), header, onUpdate)
+                header.meta.startsWith("text/") -> getString(socket, uri, header, onUpdate)
+                header.meta.startsWith("image/") -> getBinary(socket, uri, header, onUpdate)
+                else -> {
+                    //File served over Gemini but not handled in-app, eg .pdf
+                    if(forceDownload){
+                        getBinary(socket, uri, header, onUpdate)
+                    }else{
+                        onUpdate(GemState.ResponseUnknownMime(uri, header))
+                    }
                 }
             }
+        }else{
+            println("Buran dropped response from $uri: request cancelled or superseded")
         }
 
         //Close input
@@ -172,7 +176,6 @@ class GeminiDatasource(private val context: Context, val history: BuranHistory):
         bufferedWriter.close()
         outWriter.close()
 
-        currentRequestAddress = null
         socket.close()
     }
 
