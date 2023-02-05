@@ -148,7 +148,7 @@ class GeminiDatasource(private val context: Context, val history: BuranHistory):
             currentRequestAddress = null
             when {
                 header.code == GeminiResponse.INPUT -> onUpdate(GemState.ResponseInput(uri, header))
-                header.code == GeminiResponse.REDIRECT ->  onUpdate(GemState.Redirect(header.meta))
+                header.code == GeminiResponse.REDIRECT ->  onUpdate(GemState.Redirect(uri, header))
                 header.code == GeminiResponse.CLIENT_CERTIFICATE_REQUIRED -> onUpdate(GemState.ClientCertRequired(uri, header))
                 header.code != GeminiResponse.SUCCESS -> onUpdate(GemState.ResponseError(header))
                 header.meta.startsWith("text/gemini") -> getGemtext(bufferedReader, requestEntity.trim().toURI(), header, onUpdate)

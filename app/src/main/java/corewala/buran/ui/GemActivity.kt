@@ -458,7 +458,10 @@ class GemActivity : AppCompatActivity() {
                     .show()
             }
 
-            is GemState.Redirect -> gemRequest(omniTerm.getGlobalUri(state.uri))
+            is GemState.Redirect -> {
+                omniTerm.set(proxiedAddress ?: state.uri.toString())
+                gemRequest(omniTerm.getGlobalUri(state.header.meta))
+            }
 
             is GemState.ClientCertRequired -> runOnUiThread {
                 loadingView(false)
