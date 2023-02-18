@@ -1,0 +1,5 @@
+Buran Gemini protokolorako nabigatzaile xumea da, Gemini espazioa Android-en dotoretasunez esploratzea ahalbidetzen duena.
+
+Aplikazio honek ez du kanpoko dependentziarik eta ez du libreak ez diren zerbitzuen beharrik, sistemaren liburutegiak bakarrik darabiltza. Ingeles, Frantses eta Euskarazko lokalizazioak ditu eta irisgarritasun eta bizitza-kalitate ezaugarriekin bateragarria da.
+
+Buran ÖLAB-ek sortutako Ariane-ren fork bat da, Europar Batasunaren Lizentzia Publikoaren baldintzekin bat datorrena.
