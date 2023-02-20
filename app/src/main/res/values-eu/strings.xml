@@ -2,9 +2,8 @@
     <string name="app_name">Buran</string>
     <string name="gemini_protocol">gemini://</string>
     <string name="main_input_hint">Idatzi gemini:// helbidea</string>
-    <string name="main_input_search_hint">Idatzi bilatu nahi duzun terminoa</string>
+    <string name="main_input_search_hint">Idatzi bilatu nahi duzuna</string>
     <string name="copy_address">Partekatu helbidea</string>
-    <string name="load_image">Display inline</string>
     <string name="about">Honi buruz</string>
     <string name="address_copied_to_clipboard">Helbidea arbelera kopiatu da</string>
     <string name="gemini_address">Gemini helbidea</string>
@@ -64,14 +63,15 @@
     <string name="dark">Iluna</string>
     <string name="tls_config">TLS ezarpenak</string>
     <string name="web_content">Web edukia</string>
-    <string name="web_content_label">Ireki webgunean barnean Fitxa Pertsonalizatuak erabiliz defektuzko nabigatzailearen ordez. Honek Gemini espazioan geratzen lagun zaitzake, web zabaleko distrakzioak ekidinez. Bateragarria den web nabigatzaile bat behar du.</string>
+    <string name="web_content_label">Ireki Fitxa Pertsonalizatuak erabiliz defektuzko nabigatzailearen ordez. Honek Gemini espazioan geratzen lagun zaitzake, web zabaleko distrakzioak ekidinez. Bateragarria den web nabigatzaile bat behar du.</string>
     <string name="web_content_switch_label">Ireki barneko nabigatzailean</string>
     <string name="http_proxy">HTTP proxya</string>
     <string name="no_http_proxy_set">Ez da HTTP proxyrik ezarri</string>
     <string name="proxied_content">Eduki hau proxy baten bidez ikusten ari zara</string>
     <string name="open_original">Ireki jatorrizkoa</string>
-    <string name="show_inline_images">Inline local images</string>
+    <string name="show_inline_images">Erakutsi irudiak gorputzean</string>
     <string name="pkcs_notice">Only PKCS12 client keystores are currently supported.</string>
+    <string name="pkcs_notice">PKCS12 pasahitz-kudeatzaileak soilik erabil daitezke oraingoz.</string>
     <string name="client_certificate">Bezeroaren ziurtagiria</string>
     <string name="tap_to_select_client_certificate">Hautatu bezeroaren ziurtagiria</string>
     <string name="client_certificate_password">Bezeroaren ziurtagiriaren pasahitza</string>
@@ -92,7 +92,7 @@
     <string name="retry">Freskatu orrialdea eta saiatu berriro</string>
     <string name="history_cleared">Historia garbitu da</string>
     <string name="runtime_cache_cleared">Exekuzio katxea garbitu da</string>
-    <string name="show_inline_icons">Inline link icons</string>
+    <string name="show_inline_icons">Erakutsi ikonoak esteketan</string>
     <string name="show_link_buttons">Erakutsi esteken botoiak</string>
     <string name="use_attention_guides">Erabili arreta gidak</string>
     <string name="bookmarks_empty">Oraindik ez duzu laster-markarik</string>
